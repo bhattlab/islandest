@@ -21,9 +21,10 @@ def execute_bruce(infile, outfile, bruce_path):
     output, error = process.communicate()
 
 
-def execute_trnascan(infile, outfile, trnascan_path):
-    bashCommand = '{trnascan} -B -o {outfile} {infile}'.format(
-        trnascan=trnascan_path, outfile=outfile, infile=infile
+def execute_trnascan(infile, outfile, trnascan_path, kingdom):
+    bashCommand = '{trnascan} -{kingdom} -o {outfile} {infile}'.format(
+        trnascan=trnascan_path, outfile=outfile, infile=infile,
+        kingdom=kingdom
     )
     print('tRNAScan-SE command:', bashCommand)
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)

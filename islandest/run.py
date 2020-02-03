@@ -7,7 +7,7 @@ from islandest.finalize import _finalize
 from shutil import rmtree, copyfile
 
 def _run(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hmm_path, makeblastdb_path, prodigal_path,
-         trnascan_path, bedtools_path, force, keep_going):
+         trnascan_path, bedtools_path, force, keep_going, kingdom):
 
     if force:
         print("Removing output directory if it exists...")
@@ -42,7 +42,7 @@ def _run(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, h
 
     trnascan_out = join(tmpdir, 'tRNAscan.out')
     if not isfile(trnascan_out):
-        execute_trnascan(tmpfasta, trnascan_out, trnascan_path)
+        execute_trnascan(tmpfasta, trnascan_out, trnascan_path, kingdom)
     else:
         print("tRNAscan already complete, continuing...")
 

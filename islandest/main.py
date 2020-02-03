@@ -24,7 +24,7 @@ def cli():
     pass
 
 
-@cli.command(short_help='Run islandest on a complete or draft sequence of a single species.', help_priority=1)
+@cli.command(short_help='Run islandest on a complete or draft sequence of a single BACTERIAL species.', help_priority=1)
 @click.argument('fasta', type=click.Path(exists=True))
 @click.option('--outdir', '-o', default='islandest_output')
 @click.option('--aragorn-path', default=ARAGORN_PATH, type=click.Path(exists=True))
@@ -38,7 +38,7 @@ def cli():
 @click.option('--bedtools-path', default=BEDTOOLS_PATH, type=click.Path(exists=True))
 @click.option('--force/--no-force', default=False, help="Force overwriting of output directory.")
 @click.option('--keep-going/--no-keep-going', default=False, help="Overwrite outputs if already exist.")
-def run(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hmm_path, makeblastdb_path, prodigal_path,
+def bacteria(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hmm_path, makeblastdb_path, prodigal_path,
         trnascan_path, bedtools_path, force, keep_going):
     """A click access point for the run module. This is used for creating the command line interface."""
     log_params(command='run', fasta=fasta, outdir=outdir, aragorn_path=aragorn_path, blastn_path=blastn_path,
@@ -47,7 +47,32 @@ def run(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hm
                force=force, keep_going=keep_going)
 
     _run(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hmm_path, makeblastdb_path,
-         prodigal_path, trnascan_path, bedtools_path, force, keep_going)
+         prodigal_path, trnascan_path, bedtools_path, force, keep_going, kingdom='B')
+
+@cli.command(short_help='Run islandest on a complete or draft sequence of a single ARCHAEAL species.', help_priority=1)
+@click.argument('fasta', type=click.Path(exists=True))
+@click.option('--outdir', '-o', default='islandest_output')
+@click.option('--aragorn-path', default=ARAGORN_PATH, type=click.Path(exists=True))
+@click.option('--blastn-path', default=BLASTN_PATH, type=click.Path(exists=True))
+@click.option('--bruce-path', default=BRUCE_PATH, type=click.Path(exists=True))
+@click.option('--hmmsearch-path', default=HMMSEARCH_PATH, type=click.Path(exists=True))
+@click.option('--hmm-path', default=HMM_PATH, type=click.Path(exists=True))
+@click.option('--makeblastdb-path', default=MAKEBLASTDB_PATH, type=click.Path(exists=True))
+@click.option('--prodigal-path', default=PRODIGAL_PATH, type=click.Path(exists=True))
+@click.option('--trnascan-path', default=TRNASCAN_PATH, type=click.Path(exists=True))
+@click.option('--bedtools-path', default=BEDTOOLS_PATH, type=click.Path(exists=True))
+@click.option('--force/--no-force', default=False, help="Force overwriting of output directory.")
+@click.option('--keep-going/--no-keep-going', default=False, help="Overwrite outputs if already exist.")
+def archaea(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hmm_path, makeblastdb_path, prodigal_path,
+        trnascan_path, bedtools_path, force, keep_going):
+    """A click access point for the run module. This is used for creating the command line interface."""
+    log_params(command='run', fasta=fasta, outdir=outdir, aragorn_path=aragorn_path, blastn_path=blastn_path,
+               bruce_path=bruce_path, hmmsearch_path=hmmsearch_path, hmm_path=hmm_path, makeblastdb_path=makeblastdb_path,
+               prodigal_path=prodigal_path, trnascan_path=trnascan_path, bedtools_path=bedtools_path,
+               force=force, keep_going=keep_going)
+
+    _run(fasta, outdir, aragorn_path, blastn_path, bruce_path, hmmsearch_path, hmm_path, makeblastdb_path,
+         prodigal_path, trnascan_path, bedtools_path, force, keep_going, kingdom='A')
 
 
 def log_params(**kwargs):
