@@ -48,7 +48,7 @@ def make_bed_file(blast_hits, aragorn_tdna, bruce_tdna, trnascan_tdna, outbedfil
 
                 tDNA_end = res['tdna_end']
                 out.append([res['saccver'], int(res['island_start']), int(res['island_end']), 'ID=Island' + str(tdna_count) + ';Parent=' + 'tDNA'+str(i+1) + ';tDNA_end=' + tDNA_end + ';', 0, res_orient, int(res['island_start']), int(res['island_end']), '0,0,255'])
-                out.append([res['saccver'], int(res['sstart']), int(res['send']), 'ID=Frag' + str(tdna_count) + ';Parent=' + 'Island' + str(tdna_count) + ';tDNA_end=' + tDNA_end + ';', 0, res_orient, int(res['sstart']), int(res['send']), '0,255,0'])
+                out.append([res['saccver'], int(res['sstart']), int(res['send']), 'ID=Frag' + str(tdna_count) + ';Parent=' + 'Island' + str(tdna_count) + ';tDNA_end=' + tDNA_end + ';blast_evalue=' + str(res['evalue']) + ';blast_pident=' + str(res['pident'])+';', 0, res_orient, int(res['sstart']), int(res['send']), '0,255,0'])
 
                 for integ, integ_contig, integ_start, integ_end, orient in res['integrases']:
                     protein_count += 1
