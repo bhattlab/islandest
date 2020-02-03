@@ -1,0 +1,6 @@
+include islandest/bin/aragorn
+include islandest/bin/blastn
+include islandest/bin/bruce
+include islandest/bin/makeblastdb
+include islandest/bin/hmmsearch
+include islandest/bin/prodigal
