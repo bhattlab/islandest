@@ -30,11 +30,11 @@ def make_bed_file(blast_hits, aragorn_tdna, bruce_tdna, trnascan_tdna, outbedfil
             aragorn, bruce, trnascan = get_tdna(contig, start, end, aragorn_tdna, bruce_tdna, trnascan_tdna)
             tdna_details = ''
             if aragorn is not None:
-                tdna_details += 'aragorn_tDNA_type=' + aragorn.type + ';aragorn_amino_acid=' + aragorn.amino_acid + ';aragorn_codon=' + aragorn.codon + ';'
+                tdna_details += 'aragorn_tDNA_type=' + str(aragorn.type) + ';aragorn_amino_acid=' + str(aragorn.amino_acid) + ';aragorn_codon=' + str(aragorn.codon) + ';'
             if bruce is not None:
-                tdna_details += 'bruce_tDNA_type=' + bruce.type + ';bruce_amino_acid=' + bruce.amino_acid + ';bruce_codon=' + bruce.codon + ';'
+                tdna_details += 'bruce_tDNA_type=' + str(bruce.type) + ';bruce_amino_acid=' + str(bruce.amino_acid) + ';bruce_codon=' + str(bruce.codon) + ';'
             if trnascan is not None:
-                tdna_details += 'trnascan_tDNA_type=' + trnascan.type + ';trnascan_amino_acid=' + trnascan.amino_acid + ';trnascan_codon=' + trnascan.codon + ';'
+                tdna_details += 'trnascan_tDNA_type=' + str(trnascan.type) + ';trnascan_amino_acid=' + str(trnascan.amino_acid) + ';trnascan_codon=' + str(trnascan.codon) + ';'
 
             out.append([contig, start, end, 'ID=tDNA'+str(i+1) + ';' + tdna_details, 0, orient, int(start), int(end), '255,0,0'])
 
